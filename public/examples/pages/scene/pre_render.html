@@ -1,0 +1,17 @@
+<div id="viewer-container"></div>
+<script>
+  let viewer = undefined
+  function initViewer() {
+    viewer = new DC.Viewer('viewer-container')
+    let key = 'e7894a985fe457b58ef9c65beae0619a'
+    let baselayer = DC.ImageryLayerFactory.createTdtImageryLayer({
+      key,
+      style: 'img'
+    })
+    viewer.addBaseLayer(baselayer)
+    viewer.on(DC.SceneEventType.PRE_RENDER, e => {
+      console.log(e)
+    })
+  }
+  DC.ready(initViewer)
+</script>

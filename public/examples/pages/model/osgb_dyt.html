@@ -1,0 +1,23 @@
+<div id="viewer-container"></div>
+<script>
+  let viewer = undefined
+
+  function initViewer() {
+    viewer = new DC.Viewer('viewer-container')
+    let key = 'e7894a985fe457b58ef9c65beae0619a'
+    let baselayer = DC.ImageryLayerFactory.createTdtImageryLayer({
+      key,
+      style: 'img'
+    })
+    viewer.addBaseLayer(baselayer)
+    let layer = new DC.TilesetLayer('layer')
+    viewer.addLayer(layer)
+    let tileset = new DC.Tileset(
+      'http://earthsdk.com/v/last/Apps/assets/dayanta/tileset.json'
+    )
+    tileset.setHeight(-420)
+    layer.addOverlay(tileset)
+    viewer.flyTo(tileset)
+  }
+  DC.ready(initViewer)
+</script>

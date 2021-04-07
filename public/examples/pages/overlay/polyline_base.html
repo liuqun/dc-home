@@ -1,0 +1,26 @@
+<div id="viewer-container"></div>
+<script>
+  let viewer = undefined
+
+  function initViewer() {
+    viewer = new DC.Viewer('viewer-container')
+    let key = 'e7894a985fe457b58ef9c65beae0619a'
+    let baselayer = DC.ImageryLayerFactory.createTdtImageryLayer({
+      key,
+      style: 'img'
+    })
+    viewer.addBaseLayer(baselayer)
+    let layer = new DC.VectorLayer('layer')
+    viewer.addLayer(layer)
+
+    let polyline = new DC.Polyline('-75, 35; -125, 35')
+    polyline.setStyle({
+      width: 10,
+      material: DC.Color.RED,
+      clampToGround: true
+    })
+    layer.addOverlay(polyline)
+    viewer.flyTo(layer)
+  }
+  DC.ready(initViewer)
+</script>

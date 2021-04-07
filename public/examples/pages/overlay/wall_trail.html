@@ -1,0 +1,31 @@
+<div id="viewer-container"></div>
+<script>
+  let viewer = undefined
+
+  function initViewer() {
+    viewer = new DC.Viewer('viewer-container')
+
+    let key = 'e7894a985fe457b58ef9c65beae0619a'
+    let baselayer = DC.ImageryLayerFactory.createTdtImageryLayer({
+      key,
+      style: 'img'
+    })
+    viewer.addBaseLayer(baselayer)
+
+    let layer = new DC.VectorLayer('layer')
+    viewer.addLayer(layer)
+
+    let wall = new DC.Wall(
+      '-107.0,43.0,100000.0;-97.0,43.0,100000.0;-97.0,40.0,100000.0;-107.0,40.0,100000.0;-107.0,43.0,100000.0'
+    )
+    wall.setStyle({
+      material: new DC.WallTrailMaterialProperty({
+        color: DC.Color.GREEN,
+        speed: 2
+      })
+    })
+    layer.addOverlay(wall)
+    viewer.flyTo(layer)
+  }
+  DC.ready(initViewer)
+</script>
