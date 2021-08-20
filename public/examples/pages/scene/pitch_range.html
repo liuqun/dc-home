@@ -1,0 +1,15 @@
+<div id="viewer-container"></div>
+<script>
+  let viewer = undefined
+
+  function initViewer() {
+    viewer = new DC.Viewer('viewer-container')
+    let baselayer = DC.ImageryLayerFactory.createAmapImageryLayer({
+      style: 'img',
+      crs:'WGS84'
+    })
+    viewer.addBaseLayer(baselayer)
+    viewer.setPitchRange(-90, -60)
+  }
+  DC.ready(initViewer)
+</script>

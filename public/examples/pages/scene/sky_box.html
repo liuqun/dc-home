@@ -1,0 +1,48 @@
+<div id="viewer-container" style="background:green"></div>
+<div class="btn-box">
+  <ul>
+    <li><button onclick="changeType(0)">效果一</button></li>
+    <li><button onclick="changeType(1)">效果二</button></li>
+    <li><button onclick="changeType(2)">效果三</button></li>
+    <li><button onclick="changeType(3)">效果四</button></li>
+    <li><button onclick="changeType(4)">效果五</button></li>
+  </ul>
+</div>
+<script>
+  let viewer = undefined
+
+  let skyBoxes=[]
+
+
+  function changeType(type){
+    viewer.setOptions({
+      skyBox:skyBoxes[type]
+    })
+  }
+
+  function initViewer() {
+    viewer = new DC.Viewer('viewer-container')
+    for(let i = 0;i < 5;i++){
+      skyBoxes.push(new DC.SkyBox({
+          sources:{
+            positiveX: `examples/images/sky-box/${i}/right.png`,
+            negativeX: `examples/images/sky-box/${i}/left.png`,
+            positiveY: `examples/images/sky-box/${i}/down.png`,
+            negativeY: `examples/images/sky-box/${i}/up.png`,
+            positiveZ: `examples/images/sky-box/${i}/back.png`,
+            negativeZ: `examples/images/sky-box/${i}/front.png`
+          }
+        })
+      )
+    }
+    viewer.setOptions({
+      skyBox:skyBoxes[3]
+    })
+    let baselayer = DC.ImageryLayerFactory.createAmapImageryLayer({
+      style: 'img'
+    })
+    viewer.addBaseLayer(baselayer)
+  }
+
+  DC.ready(initViewer)
+</script>

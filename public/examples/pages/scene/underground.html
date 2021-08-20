@@ -1,0 +1,18 @@
+<div id="viewer-container"></div>
+<script>
+  let viewer = undefined
+
+  function initViewer() {
+    viewer = new DC.Viewer('viewer-container').setOptions({
+      globe: {
+        depthTestAgainstTerrain: true
+      }
+    })
+    let baselayer = DC.ImageryLayerFactory.createAmapImageryLayer({
+      style: 'img',
+      crs:'WGS84'
+    })
+    viewer.addBaseLayer(baselayer)
+  }
+  DC.ready(initViewer)
+</script>

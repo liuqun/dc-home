@@ -3,10 +3,11 @@
   let viewer = undefined
   function initViewer() {
     viewer = new DC.Viewer('viewer-container')
-    let baselayer = DC.ImageryLayerFactory.createGoogleImageryLayer({
-      style: 'img'
+    let baseLayer = new DC.ImageryLayerFactory.createAmapImageryLayer({
+      style:'img',
+      crs:"WGS84"
     })
-    viewer.addBaseLayer(baselayer)
+    viewer.addBaseLayer(baseLayer)
   }
   DC.ready(initViewer)
 </script>
