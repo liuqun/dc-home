@@ -1,0 +1,35 @@
+<div id="viewer-container"></div>
+<div class="btn-box">
+  <ul>
+    <li><button onclick="start()">开始</button></li>
+    <li><button onclick="stop()">结束</button></li>
+  </ul>
+</div>
+<script>
+  let viewer = undefined
+  let aroundView= undefined
+
+  function start(){
+    aroundView.start()
+  }
+
+  function stop(){
+    aroundView.stop()
+  }
+
+  function initViewer() {
+    viewer = new DC.Viewer('viewer-container')
+    let baselayer = DC.ImageryLayerFactory.createAmapImageryLayer({
+      style: 'img',
+      crs:'WGS84'
+    })
+    viewer.addBaseLayer(baselayer)
+    viewer.flyToPosition(
+      new DC.Position(120.1223, 31.1232, 1e5, 0, -90),
+      () => {
+        aroundView = new DC.AroundView(viewer)
+      }
+    )
+  }
+  DC.ready(initViewer)
+</script>

@@ -14,10 +14,9 @@
 
   function initViewer() {
     viewer = new DC.Viewer('viewer-container')
-    let baselayer = DC.ImageryLayerFactory.createGoogleImageryLayer({
+    let baselayer = DC.ImageryLayerFactory.createAmapImageryLayer({
       style: 'img'
     })
-
     viewer.addBaseLayer(baselayer)
     let layer = new DC.HtmlLayer('layer')
     viewer.addLayer(layer)
@@ -31,7 +30,7 @@
     })
 
     viewer.flyToPosition(
-      new DC.Position(120.38105869, 31.10115627, 10000, 0, -90)
+      new DC.Position(120.472147621, 30.61004946, 65380.21, 14.0,  -40.94)
     )
   }
   DC.ready(initViewer)
